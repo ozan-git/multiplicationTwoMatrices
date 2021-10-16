@@ -46,7 +46,7 @@ def check_float():
 			user_input = float(user_input)
 			break
 		except ValueError:
-			print("Not valid. Please enter a number.")
+			print("Not applicable. Please enter a number.")
 	return user_input
 
 
@@ -74,7 +74,7 @@ def user_matrices_data(text, rows, columns):
 
 
 def user_matrices(col_of_first, row_of_first, col_of_second, row_of_second):
-	first_matrix = user_matrices_data(f"First matrix is: ", row_of_first, col_of_first)
+	first_matrix = user_matrices_data("First matrix is: ", row_of_first, col_of_first)
 	second_matrix = user_matrices_data("Second matrix is: ", row_of_second, col_of_second)
 	return first_matrix, second_matrix
 
@@ -147,18 +147,18 @@ press 3 to exit.
 		if user_input == '3':
 			break
 		elif user_input == '1' or user_input == '2':
-			print("Enter the column of first matrix")
+			print("Enter the column of first matrix (|||): ")
 			col_of_first = check_entered_matrix_dimensions()
-			print("Enter the row of first matrix")
+			print("Enter the row of first matrix (---): ")
 			row_of_first = check_entered_matrix_dimensions()
 
 			is_valid = True
 			while is_valid:
-				print("Enter the row of second matrix")
+				print("Enter the row of second matrix (---): ")
 				row_of_second = check_entered_matrix_dimensions()
 
 				if col_of_first == row_of_second:
-					print("Enter the column of second matrix")
+					print("Enter the column of second matrix (|||): ")
 					col_of_second = check_entered_matrix_dimensions()
 
 					is_valid = False
