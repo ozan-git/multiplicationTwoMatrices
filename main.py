@@ -16,6 +16,7 @@
 import random
 
 
+# Checking of matrix dimensions. Matrix sizes are provided to be between 1 and 20.
 def check_entered_matrix_dimensions():
 	while True:
 		reader = input()
@@ -26,10 +27,10 @@ def check_entered_matrix_dimensions():
 			print("Please enter a value between 1 and 20.")
 		except ValueError:
 			print("Please enter a valid dimension.")
-
 	return reader
 
 
+# It creates a matrix of all 0s.
 def init_matrix(rows, columns):
 	# Python program to create a (m x n) matrix
 	# with all 0s
@@ -39,6 +40,8 @@ def init_matrix(rows, columns):
 	return multi_list
 
 
+# It is checked whether the value entered by the user is a number.
+# If it is not a number, it is asked to enter a numeric value again.
 def check_float():
 	while True:
 		user_input = input()
@@ -50,6 +53,8 @@ def check_float():
 	return user_input
 
 
+# The text from the function is printed on the screen.
+# A 2-dimensional matrix is created with nested for loops.
 def print_matrix(text, matrix):
 	print(text)
 	print("::::::::")
@@ -63,12 +68,11 @@ def print_matrix(text, matrix):
 def user_matrices_data(text, rows, columns):
 	print(text)
 	matrix = init_matrix(rows, columns)
-
 	for i in range(rows):
 		for j in range(columns):
 			#  f"" is improved way to format strings.
 			print(f"[{i + 1}][{j + 1}]:")
-			matrix[i][j] = check_float()
+			matrix[i][j: int] = check_float()
 		print_matrix(text, matrix)
 	return matrix
 
@@ -91,16 +95,19 @@ def matrix_bounds():
 	return lower_bound, upper_bound
 
 
+# It generates a random matrix based on the information received from the user.
+# The limits of the random numbers to be used are determined by the lower_bound and upper_bound data.
 def generate_random_matrix_data(text, rows, columns, lower_bound, upper_bound):
 	matrix = init_matrix(rows, columns)
 
 	for i in range(rows):
 		for j in range(columns):
-			matrix[i][j] = random.uniform(lower_bound, upper_bound)
+			matrix[i][j: int] = random.uniform(lower_bound, upper_bound)
 	print_matrix(text, matrix)
 	return matrix
 
 
+# Data is sent to the random number generating function.
 def generate_random_matrices(row_of_first, col_of_first, row_of_second, col_of_second, lower_bound, upper_bound):
 	first_matrix = generate_random_matrix_data(
 		"First matrix is: ", row_of_first, col_of_first, lower_bound, upper_bound)
@@ -137,11 +144,11 @@ def main():
 	while True:
 		# Take the user choices
 		print("""
-Press 1 if you want to enter the matrices manually, 
-press 2 to generate random, and
-press 3 to exit.
+Press 1 to create the matrices yourself, 
+Press 2 to randomly generate or 
+Press 3 to exit. 
 """)
-
+		# The value entered by the user is guaranteed to be 1, 2 or 3.
 		user_input = check_input()
 
 		if user_input == '3':
@@ -157,6 +164,9 @@ press 3 to exit.
 				print("Enter the row of second matrix (---): ")
 				row_of_second = check_entered_matrix_dimensions()
 
+				# For matrix multiplication, the number of columns in the first matrix must be equal to the number of
+				# rows in the second matrix. The result matrix has the number of rows of the first and the number of
+				# columns of the second matrix.
 				if col_of_first == row_of_second:
 					print("Enter the column of second matrix (|||): ")
 					col_of_second = check_entered_matrix_dimensions()
@@ -168,6 +178,7 @@ press 3 to exit.
 					if user_input == '1':
 						first_matrix, second_matrix = \
 							user_matrices(col_of_first, row_of_first, col_of_second, row_of_second)
+					# User wants to generate random matrix.
 					else:
 						lower_bound, upper_bound = matrix_bounds()
 						first_matrix, second_matrix = generate_random_matrices(
@@ -181,6 +192,7 @@ press 3 to exit.
 						"Not applicable: The column of the first matrix must be equal to the row of the second matrix.\n")
 
 
+# The value received from the user is expected to be 1 2 or 3. If not, it will be asked again.
 def check_input():
 	while True:
 		reader = input()
