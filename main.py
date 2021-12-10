@@ -3,6 +3,7 @@
 # It was created on October 12, 2021.
 
 # Written by Orhan Ozan Yildiz.
+# Random variable generators.
 import random
 
 
@@ -22,8 +23,7 @@ def check_entered_matrix_dimensions():
 
 # It creates a matrix of all 0s.
 def init_matrix(rows, columns):
-	# Python program to create a (m x n) matrix
-	# with all 0s
+	# Python program to create a (m x n) matrix with all 0s
 	# input => print([[0 for x in range(5)] for x in range(4)])
 	# output => [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 	multi_list = [[0 for _ in range(columns)] for _ in range(rows)]
@@ -62,7 +62,7 @@ def user_matrices_data(text, rows, columns):
 		for j in range(columns):
 			#  f"" is improved way to format strings.
 			print(f"[{i + 1}][{j + 1}]:")
-			matrix[i][j: int] = check_float()
+			matrix[i][j] = check_float()
 		print_matrix(text, matrix)
 	return matrix
 
@@ -92,7 +92,7 @@ def generate_random_matrix_data(text, rows, columns, lower_bound, upper_bound):
 
 	for i in range(rows):
 		for j in range(columns):
-			matrix[i][j: int] = random.uniform(lower_bound, upper_bound)
+			matrix[i][j] = random.uniform(lower_bound, upper_bound)
 	print_matrix(text, matrix)
 	return matrix
 
